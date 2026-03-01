@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<header style="background:#111;color:white;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;">
+<h2>🍗 ร้านข้าวมันไก่บ้านเรา</h2>
+<div>
+<a href="index.html" style="color:white;margin-left:20px;text-decoration:none;">หน้าแรก</a>
+<a href="about.html" style="color:white;margin-left:20px;text-decoration:none;">เกี่ยวกับเรา</a>
+<a href="cart.html" style="color:white;margin-left:20px;text-decoration:none;">🛒 ตะกร้า</a>
+<a href="contact.html" style="color:white;margin-left:20px;text-decoration:none;">ติดต่อ</a>
+</div>
+</header>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ตะกร้า</title>
+<style>
+body{font-family:Kanit;background:#f8f8f8;padding:50px;text-align:center;}
+.box{background:white;padding:30px;border-radius:15px;max-width:600px;margin:auto;}
+button{padding:10px 20px;background:#111;color:white;border:none;border-radius:6px;margin-top:15px;}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h1>ตะกร้าสินค้า</h1>
+<div id="list"></div>
+<h3 id="total"></h3>
+<button onclick="checkout()">ชำระเงิน</button>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let total = 0;
+let list = "";
+
+cart.forEach(item=>{
+list += "<p>"+item.name+" - "+item.price+" บาท</p>";
+total += parseInt(item.price);
+});
+
+document.getElementById("list").innerHTML = list;
+document.getElementById("total").innerText = "รวมทั้งหมด: "+total+" บาท";
+
+function checkout(){
+window.location.href="checkout.html";
+}
+</script>
+
+</body>
+</html>

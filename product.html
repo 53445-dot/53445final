@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<header style="background:#111;color:white;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;">
+<h2>🍗 ร้านข้าวมันไก่บ้านเรา</h2>
+<div>
+<a href="index.html" style="color:white;margin-left:20px;text-decoration:none;">หน้าแรก</a>
+<a href="about.html" style="color:white;margin-left:20px;text-decoration:none;">เกี่ยวกับเรา</a>
+<a href="cart.html" style="color:white;margin-left:20px;text-decoration:none;">🛒 ตะกร้า</a>
+<a href="contact.html" style="color:white;margin-left:20px;text-decoration:none;">ติดต่อ</a>
+</div>
+</header>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>รายละเอียดสินค้า</title>
+<style>
+body{font-family:Kanit;text-align:center;padding:60px;background:#f8f8f8;}
+.box{background:white;padding:40px;border-radius:15px;max-width:500px;margin:auto;box-shadow:0 10px 25px rgba(0,0,0,.1);}
+button{padding:12px 25px;background:#111;color:white;border:none;border-radius:8px;margin-top:20px;cursor:pointer;}
+button:hover{background:#c9a227;}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h1 id="name"></h1>
+<p id="price"></p>
+<button onclick="addToCart()">เพิ่มลงตะกร้า</button>
+</div>
+
+<script>
+let name = localStorage.getItem("productName");
+let price = localStorage.getItem("productPrice");
+
+document.getElementById("name").innerText = name;
+document.getElementById("price").innerText = "ราคา "+price+" บาท";
+
+function addToCart(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart.push({name:name,price:price});
+localStorage.setItem("cart",JSON.stringify(cart));
+alert("เพิ่มลงตะกร้าแล้ว");
+window.location.href="cart.html";
+}
+</script>
+
+</body>
+</html>

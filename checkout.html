@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<header style="background:#111;color:white;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;">
+<h2>🍗 ร้านข้าวมันไก่บ้านเรา</h2>
+<div>
+<a href="index.html" style="color:white;margin-left:20px;text-decoration:none;">หน้าแรก</a>
+<a href="about.html" style="color:white;margin-left:20px;text-decoration:none;">เกี่ยวกับเรา</a>
+<a href="cart.html" style="color:white;margin-left:20px;text-decoration:none;">🛒 ตะกร้า</a>
+<a href="contact.html" style="color:white;margin-left:20px;text-decoration:none;">ติดต่อ</a>
+</div>
+</header>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ชำระเงิน</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Kanit',sans-serif;background:#fffde7;text-align:center;padding:40px;}
+button{padding:12px 25px;background:#ff5722;color:white;border:none;border-radius:25px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<h2>ชำระเงิน</h2>
+<p>โอนเงินมาที่: 123-456-7890</p>
+<p>ธนาคารกสิกรไทย</p>
+
+<button onclick="finish()">ยืนยันการชำระเงิน</button>
+
+<script>
+function finish(){
+localStorage.removeItem("cart");
+alert("สั่งซื้อสำเร็จ ขอบคุณครับ");
+window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
