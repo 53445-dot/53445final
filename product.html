@@ -6,10 +6,9 @@
 <a href="about.html" style="color:white;margin-left:20px;text-decoration:none;">เกี่ยวกับเรา</a>
 <a href="cart.html" style="color:white;margin-left:20px;text-decoration:none;">🛒 ตะกร้า</a>
 <a href="contact.html" style="color:white;margin-left:20px;text-decoration:none;">ติดต่อ</a>
+<a href="admin.html" style="color:#ffd700;margin-left:20px;text-decoration:none;">⚙ แอดมิน</a>
 </div>
 </header>
-<html lang="th">
-<head>
 <meta charset="UTF-8">
 <title>รายละเอียดสินค้า</title>
 <style>
@@ -28,18 +27,19 @@ button:hover{background:#c9a227;}
 </div>
 
 <script>
-let name = localStorage.getItem("productName");
-let price = localStorage.getItem("productPrice");
+let products = JSON.parse(localStorage.getItem("products")) || [];
+let index = localStorage.getItem("selectedProduct");
 
-document.getElementById("name").innerText = name;
-document.getElementById("price").innerText = "ราคา "+price+" บาท";
+let product = products[index];
+
+document.getElementById("name").innerText = product.name;
+document.getElementById("price").innerText = "ราคา "+product.price+" บาท";
 
 function addToCart(){
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-cart.push({name:name,price:price});
+cart.push(product);
 localStorage.setItem("cart",JSON.stringify(cart));
-alert("เพิ่มลงตะกร้าแล้ว");
-window.location.href="cart.html";
+alert("เพิ่มลงตะกร้าแล้ว ✅");
 }
 </script>
 

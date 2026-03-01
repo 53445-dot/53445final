@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<header style="background:#111;color:white;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;">
+<h2>🍗 ร้านข้าวมันไก่บ้านเรา</h2>
+<div>
+<a href="index.html" style="color:white;margin-left:20px;text-decoration:none;">หน้าแรก</a>
+<a href="about.html" style="color:white;margin-left:20px;text-decoration:none;">เกี่ยวกับเรา</a>
+<a href="cart.html" style="color:white;margin-left:20px;text-decoration:none;">🛒 ตะกร้า</a>
+<a href="contact.html" style="color:white;margin-left:20px;text-decoration:none;">ติดต่อ</a>
+<a href="admin.html" style="color:#ffd700;margin-left:20px;text-decoration:none;">⚙ แอดมิน</a>
+</div>
+</header>
+<body>
+
+<div class="container">
+<h1>⚙ จัดการสินค้า</h1>
+
+<h3>เพิ่มสินค้าใหม่</h3>
+<input type="text" id="name" placeholder="ชื่อสินค้า">
+<input type="number" id="price" placeholder="ราคา">
+<input type="file" id="imageInput" accept="image/*">
+<button onclick="addProduct()">เพิ่มสินค้า</button>
+
+<h3 style="margin-top:30px;">รายการสินค้า</h3>
+<div id="productList"></div>
+
+</div>
+
+<script>
+let products = JSON.parse(localStorage.getItem("products")) || [];
+
+function render(){
+let html="";
+products.forEach((p,index)=>{
+html+=`
+<div class="product">
+<div style="display:flex;align-items:center;gap:10px;">
+<img src="${p.image}">
+<div>
+<p>${p.name}</p>
+<p>${p.price} บาท</p>
+</div>
+</div>
+<button class="delete" onclick="deleteProduct(${index})">ลบ</button>
+</div>
+`;
+});
+document.getElementById("productList").innerHTML=html;
+}
+
+function addProduct(){
+let name=document.getElementById("name").value;
+let price=document.getElementById("price").value;
+let file=document.getElementById("imageInput").files[0];
+
+if(!name || !price || !file){
+alert("กรอกข้อมูลให้ครบ");
+return;
+}
+
+let reader=new FileReader();
+reader.onload=function(e){
+let image=e.target.result;
+
+products.push({name:name,price:price,image:image});
+localStorage.setItem("products",JSON.stringify(products));
+render();
+};
+
+reader.readAsDataURL(file);
+}
+
+function deleteProduct(index){
+products.splice(index,1);
+localStorage.setItem("products",JSON.stringify(products));
+render();
+}
+
+render();
+</script>
+
+</body>
+</html>
